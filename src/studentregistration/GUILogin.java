@@ -4,6 +4,7 @@
  */
 package studentregistration;
 
+import java.awt.Color;
 import java.sql.*;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -65,17 +66,26 @@ public class GUILogin extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("LOGIN");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel2.setText("Student ID");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel3.setText("Password");
 
-        stID.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        stID.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        stID.setActionCommand("<Not Set>");
+        stID.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                stIDFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                stIDFocusLost(evt);
+            }
+        });
 
-        passwdtxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        passwdtxt.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
 
-        btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnLogin.setText("LOGIN");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,7 +93,7 @@ public class GUILogin extends javax.swing.JFrame {
             }
         });
 
-        Registertxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Registertxt.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         Registertxt.setText("Create New Account");
         Registertxt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Registertxt.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -92,7 +102,7 @@ public class GUILogin extends javax.swing.JFrame {
             }
         });
 
-        btnReset.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btnReset.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnReset.setText("RESET");
         btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,27 +115,28 @@ public class GUILogin extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Registertxt)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnLogin)
-                                .addGap(36, 36, 36)
-                                .addComponent(btnReset))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
-                                .addGap(34, 34, 34)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(passwdtxt, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
-                                    .addComponent(stID)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(37, Short.MAX_VALUE))
+                                .addComponent(btnReset)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnLogin))
+                            .addComponent(passwdtxt)
+                            .addComponent(stID)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(Registertxt)
+                        .addGap(33, 33, 33)))
+                .addContainerGap(57, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(121, 121, 121)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,12 +152,12 @@ public class GUILogin extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(passwdtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnLogin)
-                    .addComponent(btnReset))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnReset)
+                    .addComponent(btnLogin))
                 .addGap(18, 18, 18)
                 .addComponent(Registertxt)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -170,7 +181,12 @@ public class GUILogin extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         try{
-            int id = Integer.parseInt(stID.getText());
+            if(stID.getText().trim().isEmpty()||passwdtxt.getText().trim().isEmpty()){
+                JOptionPane.showMessageDialog(this, "You can't leave empty spaces","Error",JOptionPane.WARNING_MESSAGE);
+          
+            }
+            else{
+                int id = Integer.parseInt(stID.getText());
             String passwd= passwdtxt.getText();
             pst= con.prepareStatement("select * from db where StudentID = ? and password=? ");
             pst.setInt(1, id);
@@ -179,11 +195,19 @@ public class GUILogin extends javax.swing.JFrame {
             ResultSet rs = pst.executeQuery();
             if(rs.next()){
             JOptionPane.showMessageDialog(null,"Login");
+            DisplayStudent rgf= new DisplayStudent();
+            rgf.setVisible(true);
+            rgf.pack();
+            rgf.setLocationRelativeTo(null);
+            rgf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.dispose();
         }
             else{
-                JOptionPane.showMessageDialog(null, "not matched");
+                JOptionPane.showMessageDialog(null, "Credetials not matched");
                 passwdtxt.setText("");
             }
+            }
+            
         
         }
         catch(Exception ex){
@@ -202,6 +226,22 @@ public class GUILogin extends javax.swing.JFrame {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_btnResetActionPerformed
+
+    private void stIDFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_stIDFocusGained
+        // TODO add your handling code here:
+//        try {
+//            if (stID.getText().equals("Enter ID")) {
+//                stID.setText("");
+//                stID.setForeground(new Color(153, 153, 153));
+//                
+//            }
+//        } catch (Exception e) {
+//        }
+    }//GEN-LAST:event_stIDFocusGained
+
+    private void stIDFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_stIDFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_stIDFocusLost
 
     /**
      * @param args the command line arguments
